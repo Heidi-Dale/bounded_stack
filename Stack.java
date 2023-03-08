@@ -85,7 +85,7 @@ import java.util.EmptyStackException;
         }
 
         // pop
-        public String pop () {
+        public String pop () { //pop removes from pos 0
 
             String temp = "";
 
