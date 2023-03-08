@@ -17,13 +17,21 @@ import java.util.EmptyStackException;
         //make instance variables: first, to hold first node and numElements to act as the tracker for number of elements
         private int numElements;
         private Node first;
+        private static final int INITIALCAPACITY = 10;
+        private int capacity; //made for bounded stack -> only allowed so many things in it
 
         public Stack() {
             this.numElements = 0;
             first = null;
+            capacity = INITIALCAPACITY;
         }
 
-
+        //boundedstack constructor
+        public Stack (int cap) {
+            this.numElements = 0;
+            first = null;
+            capacity = cap;
+        }
 
         private static class Node {
 
@@ -75,6 +83,9 @@ import java.util.EmptyStackException;
         //4. push
         public void push (String s) {
 
+            if (isFull()) {
+                new StackFullException("Nu uh bruh, there's no more room up in here.");
+            }
             //create new node of data to be added
             Node n1 = new Node (s);
 
@@ -100,6 +111,13 @@ import java.util.EmptyStackException;
 
             return temp;
         }
+
+
+        //bounded stack method
+        public boolean isFull () {
+            return numElements >= capacity;
+        }
+
     }
 
 
